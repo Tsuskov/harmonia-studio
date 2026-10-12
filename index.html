@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Harmonia — Music Studio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand" aria-label="Harmonia Music Studio"><span class="brand-mark">Η</span><span><strong>HARMONIA</strong><small>MUSIC STUDIO</small></span></div>
+    <div class="transport">
+      <div class="mode" role="group" aria-label="Wiedergabemodus"><button id="pat">PAT</button><button id="song">SONG</button></div>
+      <span class="divider"></span>
+      <button class="icon-button play" id="play" aria-label="Wiedergabe">▶</button>
+      <button class="icon-button" id="stop" aria-label="Stopp">■</button>
+      <button class="icon-button rec" id="record" aria-label="Aufnahme" aria-pressed="false">●</button>
+      <span class="divider"></span>
+      <label class="tempo">TEMPO <input id="bpm" type="number" value="130" min="40" max="300" aria-label="Tempo BPM"><span>BPM</span></label>
+      <output class="clock" id="clock">1:01:00</output>
+    </div>
+    <div class="edition"><span class="edition-dot"></span> PRO STUDIO <small>LOCAL SESSION</small></div>
+  </header>
+
+  <div class="toolbar">
+    <div class="toolbar-title"><span class="eyebrow">WORKSPACE / 01</span><strong>Komposition</strong></div>
+    <div class="toolbar-actions">
+      <button class="action" id="pattern">Pattern 1 ▴</button>
+      <button class="icon-button" id="addPattern" title="Neues Pattern" aria-label="Neues Pattern">＋</button>
+      <span class="divider"></span>
+      <button class="action subtle" id="openPiano" title="Piano Roll öffnen">⌗ <span>PIANO ROLL</span></button>
+      <span class="divider"></span>
+      <button class="action subtle" id="loadProject" title="Projektdatei öffnen">↥ <span>ÖFFNEN</span></button>
+      <button class="action subtle" id="saveProject" title="Projektdatei speichern">↧ <span>SPEICHERN</span></button>
+      <button class="action primary" id="exportWav" title="WAV exportieren">⇩ <span>WAV EXPORT</span></button>
+      <input id="projectFile" type="file" accept="application/json,.json" hidden>
+    </div>
+  </div>
+
+  <main class="layout">
+    <aside class="browser panel">
+      <div class="panel-heading"><span class="eyebrow">01 / LIBRARY</span><h2>Bibliothek</h2><span class="panel-symbol">◈</span></div>
+      <nav class="browser-tabs" aria-label="Bibliothek"><button class="active">KLÄNGE</button></nav>
+      <div class="collection"><span class="collection-icon">Η</span><div><span class="eyebrow">HARMONIA ORIGINALS</span><strong>Harmonia Sounds</strong><p>Fünf eingebaute Instrumente. Bereit für neue Ideen.</p></div></div>
+      <label class="search-wrap"><span>⌕</span><input id="sampleSearch" type="search" placeholder="Klänge durchsuchen" aria-label="Klänge durchsuchen"></label>
+      <div class="library-caption"><span>INSTRUMENTE</span><span>05 STIMMEN</span></div>
+      <div class="soundscroll" id="samples"></div>
+      <div class="library-foot"><span class="status-light"></span> Synthese bereit <small>Alle Klänge lokal erzeugt</small></div>
+    </aside>
+
+    <section class="rack panel">
+      <div class="panel-heading compact"><span class="eyebrow">02 / SEQUENCER</span><h2>Channel Rack</h2><span class="panel-symbol">▦</span></div>
+      <div class="rack-controls"><span>INSTRUMENT</span><span>STEP SEQUENCER <em>01 — 16</em></span></div>
+      <div class="channel-list" id="channels"></div>
+      <button class="plusrow" id="addChannel" title="Kanal hinzufügen">＋ <span>Kanal hinzufügen</span></button>
+      <div class="rack-foot">Klicke auf einen Klangnamen für die Piano Roll.</div>
+    </section>
+
+    <section class="mixer panel">
+      <div class="panel-heading compact"><span class="eyebrow">03 / MIXER</span><h2>Mischpult</h2><span class="panel-symbol">≋</span></div>
+      <div class="mixer-bar">LEVELS <span>MASTER + 16 KANÄLE</span></div>
+      <div class="strips" id="strips"></div>
+    </section>
+
+    <section class="playlist panel">
+      <div class="panel-heading compact"><span class="eyebrow">04 / ARRANGEMENT</span><h2>Playlist</h2><span class="panel-symbol">▤</span></div>
+      <div class="pl-tools"><span>TAKT / 4⁄4</span><span>Klicke, um einen Pattern-Clip zu setzen. Klicke auf einen Clip, um ihn zu entfernen.</span></div>
+      <div class="pl-ruler" id="ruler"><span>SPUR</span></div>
+      <div class="tracks" id="tracks"><div class="playline" id="playline"></div></div>
+    </section>
+
+    <section class="piano-roll" id="pianoRoll" hidden>
+      <div class="piano-head"><span class="eyebrow">NOTE EDITOR</span><strong id="pianoTitle">Piano Roll</strong><span>16 Steps · C4–B4</span><button id="closePiano" aria-label="Piano Roll schließen">×</button></div>
+      <div class="piano-rows" id="pianoRows"></div>
+    </section>
+  </main>
+
+  <footer class="bottom"><span><i class="status-light"></i> ENGINE READY</span><span>44.1 KHZ</span><span id="patternStatus">Pattern 1</span><span class="footer-greek">HARMONIA · MAKE MUSIC</span></footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
